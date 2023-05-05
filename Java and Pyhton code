@@ -1,0 +1,35 @@
+// Java Code with Explanation//
+class Solution {
+    public int maxVowels(String s, int k) {
+// consider an set array of vowels//
+        Set<Character> vow=new HashSet<>(Arrays.asList('a','e','i','o','u'));
+        int maxi=0, curr_maxi=0;
+// now traverse into the string //
+        for(int i=0; i<s.length();i++){
+// check here if current idx i>=k and s[i-k] is vowel so curr_max-=1//
+        if(i>=k && vow.contains(s.charAt(i-k))){
+            curr_maxi-=1;
+        }
+        if(vow.contains(s.charAt(i))){
+            curr_maxi++ ;
+        }
+        maxi=Math.max(maxi,curr_maxi);
+
+        }
+        return maxi;
+    }
+}
+
+// Python Code//
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        curr_max=0
+        maxi=0
+        vow=["a","i","e","o","u"]
+        for i in range(len(s)):
+            if i>=k and s[i-k] in vow:
+                curr_max-=1
+            if s[i] in vow:
+                curr_max+=1
+            maxi=max(curr_max,maxi)
+        return maxi
